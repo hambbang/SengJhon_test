@@ -1,0 +1,23 @@
+//20413 최윤우
+package test20413;
+class Mask{
+	String color, size;
+	Mask(String color, String size){
+		this.color=color;
+		this.size=size;
+	}
+	void printMask(){
+		System.out.println("주문하신 마스크는 "+color+"색, "+
+				size+"사이즈 입니다.");
+	}
+}
+public class Mask20413 {
+	public static void main(String[] args) {
+		Mask a=new Mask("흰","중형");
+		Mask b=new Mask("검정","중형");
+		Mask c=new Mask("파란","대형");
+		a.printMask();
+		b.printMask();
+		c.printMask();
+	}
+}
