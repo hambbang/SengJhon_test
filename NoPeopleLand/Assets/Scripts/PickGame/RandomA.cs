@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class RandomA : MonoBehaviour
 {
-    int RNumber;
-    public GameObject pariorArrow=null;
+    public int RNumber;
     void Start()
     {   
         RNumber = Random.Range(1, 5);
@@ -24,20 +23,9 @@ public class RandomA : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0, 0, 270);
                 break;
         }
-        Debug.Log(RNumber);
     }
 
     void Update()
     {
-        if (pariorArrow == null||!pariorArrow.activeSelf) { 
-            if(Input.GetKeyDown(KeyCode.UpArrow)&&RNumber==1)
-                gameObject.SetActive(false);
-            if(Input.GetKeyDown(KeyCode.LeftArrow)&&RNumber==2)
-                gameObject.SetActive(false);
-            if(Input.GetKeyDown(KeyCode.DownArrow)&&RNumber==3)
-                gameObject.SetActive(false);
-            if (Input.GetKeyDown(KeyCode.RightArrow) && RNumber == 4)
-                gameObject.SetActive(false);
-        }
     }
 }

@@ -8,9 +8,10 @@ using static System.Net.WebRequestMethods;
 public class Timer : MonoBehaviour
 {
     float fullTimeBar=68;
-    float CTimeBar = 0;
+    public static float CTimeBar = 0;
     float currentWidth;
     public Image timeBar;
+    public static bool gameOver=false;
     void Start()
     {
         
@@ -19,15 +20,15 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(CTimeBar<68)
-            CTimeBar += 0.3f;
+        if(CTimeBar<68&&!RoundM.clear&&!gameOver)
+            CTimeBar += 0.1f;
         currentWidth = fullTimeBar-CTimeBar;
         RectTransform rectTransform = timeBar.rectTransform;
         rectTransform.sizeDelta = new Vector2(currentWidth , rectTransform.sizeDelta.y);
-       // Debug.Log(CTimeBar);
-        if (CTimeBar <= 0)
+        if (CTimeBar >= 68)
         {
             Debug.Log("Time's up!");
+            gameOver = true;
         }
     }
 }
