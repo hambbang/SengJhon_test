@@ -16,6 +16,8 @@ namespace Assets.Fishing
             if (Input.GetKeyDown(KeyCode.E))
             {
                 on = true;
+                transform.Translate(new Vector3(0.01f, 0, 0));
+                
             }
             else
             {
@@ -29,10 +31,11 @@ namespace Assets.Fishing
            if(collision.gameObject.name == "FishingWall" && on)
             {
                 fishing.SetActive(true);
+
             }
             
         }
-        //collision.gameObject.name == "FishingWall" && 
+         
         
 
 
