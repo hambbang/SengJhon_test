@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using Microsoft.Win32.SafeHandles;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -8,39 +9,42 @@ namespace Assets.Fishing
 {
     public class FishingBar : MonoBehaviour
     {
+       
         public GameObject fishing;
         public BoxCollider2D FishingWall;
-        bool on = false;
+        
         void Update ()
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKey(KeyCode.F))
             {
-                on = true;
-                transform.Translate(new Vector3(0.01f, 0, 0));
-                
-            }
-            else
-            {
-                on = false;
-            }
+                    if (FishingWall== Physics.BoxCast(new Vector3(transform.position.x, transform.position.y,
+                        transform.position.z),
+                        new Vector3(0.15f,0.15f,1) / 2,
+                        new Vector3(0, 0, 0)))
+                        //FishingWall= 오브젝트 boxcast(플레이어 위치 x,y,z/감지범위(0.15f,0.15f,1)/2 회전x
+                        //같을시 아래코드 실행
+                    {
 
+                    minigames.hookProgress = 0;
+                    minigames.failTimer = 10f;
+                    minigames.stop = false;
+                    minigames.pause = false;
+                    fishing.SetActive(true);
+                }
+            }
         }
-
+        
         void OnTriggerStay2D(Collider2D collision)
         {
-           if(collision.gameObject.name == "FishingWall" && on)
-            {
-                fishing.SetActive(true);
-
-            }
+            
             
         }
-         
+
+
         
+                
 
-
-
-
+ 
 
 
 

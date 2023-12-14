@@ -26,7 +26,7 @@ public class minigames : MonoBehaviour
     public float hookPosition;
     [SerializeField] float hookSize = 0.1f;
     [SerializeField] float hookPower = 0.5f;
-    float hookProgress;
+    public static float hookProgress;
     public float hookPullVelocity;
     [SerializeField] float hookPullPower = 1f;
     [SerializeField] float hookGravitypower = 0.005f;
@@ -34,8 +34,9 @@ public class minigames : MonoBehaviour
     [SerializeField] SpriteRenderer hookSpriteRenderer;
 
     [SerializeField] Transform progressBarCOntainer;
-    bool pause = false;
-    [SerializeField] float failTimer = 10f;
+    public static bool pause = false;
+    [SerializeField] public static float failTimer = 10f;
+    public static bool stop=false;
 
 
     private void Start()
@@ -55,7 +56,10 @@ public class minigames : MonoBehaviour
 
     private void Update()
     {
-        if(pause) { return; }
+        if(pause) 
+        {
+            gameObject.SetActive(false);
+        }
 
         Fish();
         Hook();
@@ -99,13 +103,21 @@ public class minigames : MonoBehaviour
     private void Win()
     {
         pause = true;
-        Debug.Log("YOU WIN!");
+        if (stop ==false)
+        {
+            Debug.Log("YOU WIN!");
+            stop = true;
+        }
 
     }
     private void Lose()
     {
         pause = true;
-        Debug.Log("YOU LOSE");
+        if (stop == false)
+        {
+            Debug.Log("YOU LOSE");
+            stop = true;
+        }
     }
     void Hook()
     {
